@@ -1,0 +1,20 @@
+{
+    "--eg-iframe": "docresources/eg-iframe.html",
+    "--external": [
+        "ol.*"
+    ],
+    "--ignore-html": "debug",
+    "--output": "docs-w-ext",
+    "--processes": 0,
+    "--title": "GeoExt v3.3.2 Documentation (incl. ExtJS classes)",
+    "--warnings": [
+      "-extend",
+      "-link"
+    ],
+    "--": [
+        "src/",
+        "classic/",
+        "../ext-6.2.0/packages/core/src/",
+        "../ext-6.2.0/classic/classic/src/"
+    ]
+}

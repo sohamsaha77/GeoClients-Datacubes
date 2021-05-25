@@ -1,0 +1,168 @@
+{
+    "name": "wheregroup/mapbender3-starter",
+    "description": "Mapbender",
+    "type": "project",
+    "license": "MIT",
+    "homepage": "http://www.mapbender.org",
+    "support": {
+        "email":        "mapbender@osgeo.org",
+        "issues":       "https://github.com/mapbender/mapbender/issues",
+        "source":       "https://github.com/mapbender/mapbender-starter",
+        "docs":         "http://doc.mapbender.org/",
+        "forum":        "http://osgeo-org.1560.x6.nabble.com/Mapbender-f4217602.html",
+        "twitter":      "https://twitter.com/mapbender",
+        "user-list":    "https://lists.osgeo.org/pipermail/mapbender_users/"
+    },
+    "autoload": {
+        "psr-4": { "": "src/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit-selenium": "^2.0",
+        "phantomjs/phantomjs": "1.x"
+    },
+    "suggest": {
+        "phing/phing": "For executing legacy Phing build tasks (unmaintained)"
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "symfony/symfony": "~3.4.0",
+        "twig/twig": "^1.41",
+        "twig/extensions": "1.x",
+        "symfony/swiftmailer-bundle": "^2.3 || ^3",
+        "symfony/monolog-bundle": "^3",
+        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/generator-bundle": "^2 || ^3",
+
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "components/jquery": "^1.11.2",
+
+        "mnsami/composer-custom-directory-installer": "1.0.*",
+
+        "proj4js/proj4js": "^2.4",
+        "mapbender/mapbender": "^3.2.4",
+        "mapbender/owsproxy": "^3.0.6",
+
+        "mapbender/coordinates-utility": "^1.1",
+        "mapbender/digitizer": "^1.4",
+        "components/font-awesome": "^4.0",
+        "wheregroup/cookieconsent": "^3",
+        "components/bootstrap": "^3"
+    },
+    "conflict": {
+        "laminas/laminas-eventmanager": ">=3.3.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer dump-autoload",
+            "ComposerBootstrap::clearCache",
+            "@update-assets"
+        ],
+        "post-update-cmd": [
+            "@post-install-cmd"
+        ],
+        "update-assets":[
+            "ComposerBootstrap::installAssets",
+            "ComponentInstaller\\Installer::postAutoloadDump"
+        ],
+        "bootstrap-database": [
+            "ComposerBootstrap::bootstrapDatabase"
+        ],
+        "clean": [
+            "ComposerBootstrap::clearCache"
+        ],
+        "version": [
+            "ComposerBootstrap::displayVersion"
+        ],
+        "project-name": [
+            "ComposerBootstrap::displayProjectName"
+        ],
+        "init-example": [
+            "ComposerBootstrap::checkConfiguration"
+        ],
+        "reimport-example-apps": [
+            "ComposerBootstrap::reimportExampleApps"
+        ],
+        "drop-and-rebuild-database": [
+            "ComposerBootstrap::rebuildDatabase"
+        ],
+        "install-hard-copy-assets": [
+            "ComposerBootstrap::installHardCopyAssets"
+        ],
+        "install-sym-link-assets": [
+            "ComposerBootstrap::installSymLinkAssets"
+        ],
+        "dist":[
+            "ComposerBootstrap::distribute"
+        ],
+        "build": [
+            "ComposerBootstrap::distribute",
+            "ComposerBootstrap::build"
+        ]
+    },
+    "scripts-descriptions": {
+        "bootstrap-database": "Reinitializes database schema and contents after connection configuration change"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "component-dir": "web/components",
+        "component-baseurl": "/components",
+        "archive-dir": "../dist",
+        "archive-format": "tar.gz",
+        "optimize-autoloader": true,
+        "process-timeout": 600,
+        "preferred-install": {
+            "mapbender/*": "source"
+        }
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "ATTENTION": "Symlinks creating under MS Windows works only if composer runs with admin permissions",
+        "symfony-assets-install": "symlink",
+        "installer-paths":{
+            "mapbender/": ["mapbender/mapbender"],
+            "fom/": ["mapbender/fom"],
+            "owsproxy/": ["mapbender/owsproxy"],
+            "vendor/igosuki/compass-mixins": ["wheregroup/compass-mixins"],
+            "web/components/datatables/": ["datatables/datatables"]
+        }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "phantomjs/phantomjs",
+                "type": "component",
+                "version": "1.8.2",
+                "dist": {
+                    "url": "https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantomjs/phantomjs-1.8.2-linux-x86_64.tar.bz2",
+                    "type": "tar"
+                },
+                "bin": [
+                    "bin/phantomjs"
+                ]
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "proj4js/proj4js",
+                "version": "2.4.3",
+                "type": "component",
+                "dist": {
+                    "url": "https://github.com/proj4js/proj4js/archive/2.4.3.zip",
+                    "type": "zip"
+                },
+                "extra": {
+                    "component": {
+                        "files": [
+                            "dist/*.js"
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
